@@ -150,7 +150,7 @@ void EthashCUDAMiner::workLoop()
 	try {
 		WorkPackage w = work();
 		//cnote << "seedhash" << "#" + m_minerSeed.hex().substr(0, 16);
-		cnote << "set work to" << "#" + w.headerHash.hex().substr(0, 8) + ", target " << "#" + w.boundary.hex().substr(0, 16);
+		cdebug << "set work to" << "#" + w.headerHash.hex().substr(0, 8) + ", target " << "#" + w.boundary.hex().substr(0, 16);
 		if (!m_miner || m_minerSeed != w.seedHash)
 		{
 			cnote << "Initialising miner...";

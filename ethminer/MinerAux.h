@@ -91,7 +91,7 @@ class BadArgument: public Exception {};
 struct MiningChannel: public LogChannel
 {
 	static const char* name() { return EthGreen "  m"; }
-	static const int verbosity = 2;
+	static const int verbosity = 1;
 	static const bool debug = false;
 };
 #define minelog clog(MiningChannel)

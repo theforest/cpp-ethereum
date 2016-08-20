@@ -111,12 +111,12 @@ std::string getThreadName();
 
 /// The default logging channels. Each has an associated verbosity and three-letter prefix (name() ).
 /// Channels should inherit from LogChannel and define name() and verbosity.
-struct LogChannel { static const char* name(); static const int verbosity = 1; static const bool debug = true; };
+struct LogChannel { static const char* name(); static const int verbosity = 2; static const bool debug = true; };
 struct LeftChannel: public LogChannel { static const char* name(); };
 struct RightChannel: public LogChannel { static const char* name(); };
 struct WarnChannel: public LogChannel { static const char* name(); static const int verbosity = 0; static const bool debug = false; };
-struct NoteChannel: public LogChannel { static const char* name(); static const bool debug = false; };
-struct DebugChannel: public LogChannel { static const char* name(); static const int verbosity = 0; };
+struct NoteChannel: public LogChannel { static const char* name(); static const int verbosity = 3; static const bool debug = false; };
+struct DebugChannel: public LogChannel { static const char* name(); static const int verbosity = 4; };
 
 enum class LogTag
 {

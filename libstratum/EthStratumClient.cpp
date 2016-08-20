@@ -136,7 +136,7 @@ void EthStratumClient::resolve_handler(const boost::system::error_code& ec, tcp:
 	}
 	else
 	{
-		cerr << "Could not resolve host" << p_active->host + ":" + p_active->port + ", " << ec.message();
+		cerr << "Could not resolve host " << p_active->host + ":" + p_active->port + ", " << ec.message();
 		reconnect();
 	}
 }
@@ -305,7 +305,7 @@ void EthStratumClient::processReponse(Json::Value& responseObject)
 
 				if (sHeaderHash != "" && sSeedHash != "" && sShareTarget != "")
 				{
-					cnote << "Received new job #" + job.substr(0,8);
+					cdebug << "Received new job #" + job.substr(0,8);
 					//cnote << "Header hash: " + sHeaderHash;
 					//cnote << "Seed hash: " + sSeedHash;
 					//cnote << "Share target: " + sShareTarget;
