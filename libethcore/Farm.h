@@ -154,6 +154,10 @@ public:
 		m_solutionStats.failed();
 	}
 
+	void foundSolution() {
+		m_solutionStats.found();
+	}
+
 	void acceptedSolution(bool _stale) {
 		if (!_stale)
 		{

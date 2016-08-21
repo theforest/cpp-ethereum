@@ -276,7 +276,7 @@ void EthStratumClient::processReponse(Json::Value& responseObject)
 		break;
 	case 4:
 		if (responseObject.get("result", false).asBool()) {
-			cnote << "B-) Submitted and accepted.";
+			minelog << "B-) Submitted and accepted.";
 			p_farm->acceptedSolution(m_stale);
 		}
 		else {
@@ -383,8 +383,9 @@ bool EthStratumClient::submit(EthashProofOfWork::Solution solution) {
 	string temp_previous_job = m_previousJob;
 	x_current.unlock();
 
-	cnote << "Solution found; Submitting to" << p_active->host << "...";
+	minelog << "Solution found; Submitting to" << p_active->host << "...";
 	cnote << "  Nonce:" << "0x" + solution.nonce.hex();
+	p_farm->foundSolution();
 
 	if (EthashAux::eval(tempWork.seedHash, tempWork.headerHash, solution.nonce).value < tempWork.boundary)
 	{

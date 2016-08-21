@@ -60,6 +60,7 @@ inline std::ostream& operator<<(std::ostream& _out, WorkingProgress _p)
 
 class SolutionStats {
 public:
+	void found() { finds++;  }
 	void accepted() { accepts++;  }
 	void rejected() { rejects++;  }
 	void failed()   { failures++; }
@@ -68,14 +69,16 @@ public:
 	void rejectedStale() { rejectedStales++; }
 
 
-	void reset() { accepts = rejects = failures = acceptedStales = rejectedStales = 0; }
+	void reset() { finds = accepts = rejects = failures = acceptedStales = rejectedStales = 0; }
 
+	unsigned getFinds()			{ return finds; }
 	unsigned getAccepts()			{ return accepts; }
 	unsigned getRejects()			{ return rejects; }
 	unsigned getFailures()			{ return failures; }
 	unsigned getAcceptedStales()	{ return acceptedStales; }
 	unsigned getRejectedStales()	{ return rejectedStales; }
 private:
+	unsigned finds  = 0;
 	unsigned accepts  = 0;
 	unsigned rejects  = 0;
 	unsigned failures = 0; 
@@ -86,7 +89,7 @@ private:
 
 inline std::ostream& operator<<(std::ostream& os, SolutionStats s)
 {
-	return os << "[A" << s.getAccepts() << "+" << s.getAcceptedStales() << ":R" << s.getRejects() << "+" << s.getRejectedStales() << ":F" << s.getFailures() << "]";
+	return os << "[" << s.getFinds() << ":A" << s.getAccepts() << "+" << s.getAcceptedStales() << ":R" << s.getRejects() << "+" << s.getRejectedStales() << ":F" << s.getFailures() << "]";
 }
 
 template <class PoW> class GenericMiner;

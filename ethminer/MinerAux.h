@@ -88,13 +88,6 @@ inline std::string credits()
 }
 
 class BadArgument: public Exception {};
-struct MiningChannel: public LogChannel
-{
-	static const char* name() { return EthGreen "  m"; }
-	static const int verbosity = 1;
-	static const bool debug = false;
-};
-#define minelog clog(MiningChannel)
 
 class MinerCLI
 {
@@ -892,7 +885,7 @@ private:
 					auto mp = f.miningProgress();
 					f.resetMiningProgress();
 					if (current)
-						minelog << "Mining on PoWhash" << "#" + (current.headerHash.hex().substr(0, 8)) << ": " << mp << f.getSolutionStats();
+						minelog << "Mining PoWhash" << "#" + (current.headerHash.hex().substr(0, 8)) << ": " << mp << f.getSolutionStats();
 					else
 						minelog << "Getting work package...";
 
@@ -1057,7 +1050,7 @@ private:
 			if (client.isConnected())
 			{
 				if (client.current())
-					minelog << "Mining on PoWhash" << "#"+(client.currentHeaderHash().hex().substr(0,8)) << ": " << mp << f.getSolutionStats();
+					minelog << "Mining PoWhash" << "#"+(client.currentHeaderHash().hex().substr(0,8)) << ": " << mp << f.getSolutionStats();
 				else if (client.waitState() == MINER_WAIT_STATE_WORK)
 					minelog << "Waiting for work package...";
 			}

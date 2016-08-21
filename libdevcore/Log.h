@@ -118,6 +118,13 @@ struct WarnChannel: public LogChannel { static const char* name(); static const 
 struct NoteChannel: public LogChannel { static const char* name(); static const int verbosity = 3; static const bool debug = false; };
 struct DebugChannel: public LogChannel { static const char* name(); static const int verbosity = 4; };
 
+struct MiningChannel: public LogChannel
+{
+        static const char* name() { return EthGreen "  m"; }
+        static const int verbosity = 1;
+        static const bool debug = false;
+};
+
 enum class LogTag
 {
 	None,
@@ -278,6 +285,7 @@ public:
 #define cdebug clog(dev::DebugChannel)
 #define cnote clog(dev::NoteChannel)
 #define cwarn clog(dev::WarnChannel)
+#define minelog clog(MiningChannel)
 
 // Null stream-like objects.
 #define ndebug if (true) {} else dev::NullOutputStream()
