@@ -319,7 +319,7 @@ void EthStratumClient::processReponse(Json::Value& responseObject)
 					{
 						cnote << "Grabbing DAG for" << seedHash;
 					}
-					if (!(dag = EthashAux::full(seedHash, true, [&](unsigned _pc){ m_waitState = _pc < 100 ? MINER_WAIT_STATE_DAG : MINER_WAIT_STATE_WORK;  cnote << "Creating DAG. " << _pc << "% done..."; return 0; })))
+					if (!(dag = EthashAux::full(seedHash, true, [&](unsigned _pc){ m_waitState = _pc < 100 ? MINER_WAIT_STATE_DAG : MINER_WAIT_STATE_WORK;  minelog << "Creating DAG. " << _pc << "% done..."; return 0; })))
 					{
 						BOOST_THROW_EXCEPTION(DAGCreationFailure());
 					}
